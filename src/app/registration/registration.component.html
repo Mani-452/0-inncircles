@@ -1,0 +1,86 @@
+<div class="container" *ngIf="state">
+    <h2>Registration Form</h2>
+      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+        <label>Username</label>
+        <input [class.is-invalid]="registrationForm.get('userName')?.invalid && registrationForm.get('userName')?.touched" formControlName="userName" type="text" class="form-control">
+        <div *ngIf="registrationForm.get('userName')?.invalid && registrationForm.get('userName')?.touched">
+          <small *ngIf="registrationForm.get('userName')?.errors?.['required']" class="text-danger">userName is Required</small>
+          <small *ngIf="registrationForm.get('userName')?.errors?.['minlength']" class="text-danger">userName must be atleast 4 characters</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input [class.is-invalid]="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched" formControlName="email" type="text" class="form-control">
+        <div *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched">
+          <small *ngIf="registrationForm.get('email')?.errors?.['required']" class="text-danger">email is Required</small>
+          <small *ngIf="registrationForm.get('email')?.errors?.['pattern']" class="text-danger">Enter correct mail!</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input formControlName="password" type="password" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Confirm Password</label>
+        <input [class.is-invalid]="registrationForm.errors?.['misMatch']" formControlName="confirmPassword" type="password" class="form-control">
+        <small class="text-danger" *ngIf="registrationForm.errors?.['misMatch']">passwords do not match</small>
+      </div>
+      <div formGroupName="address">
+        <div class="form-group">
+          <label>City</label>
+          <input formControlName="city" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>State</label>
+          <input formControlName="state" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+          <label >Postal Code</label>
+          <input formControlName="postalCode" type="text" class="form-control">
+        </div>
+      </div>
+        <div class="form-group">
+          <div class="dyn">
+            <input type="radio" formControlName="visitType" value="online" (change)="onVisitTypeChange()">
+            <label>Online</label>
+          </div>
+         <div class="dyn">
+          <input type="radio" formControlName="visitType" value="offline" (change)="onVisitTypeChange()">
+          <label> Offline</label>
+        </div>
+          <div *ngIf="isOnline">
+            <label>Date:</label>
+            <input [class.is-invalid]="registrationForm.get('date')?.invalid && registrationForm.get('date')?.touched" type="date" formControlName="date">
+            <div *ngIf="registrationForm.get('date')?.invalid && registrationForm.get('date')?.touched">
+              <small *ngIf="registrationForm.get('date')?.errors?.['required']" class="text-danger">Date is Required</small>
+              <small *ngIf="registrationForm.get('date')?.errors?.['Less']" class="text-danger">Date should be future one</small>
+            </div>
+            <label>Time:</label>
+            <input [class.is-invalid]="registrationForm.get('time')?.invalid && registrationForm.get('time')?.touched" type="time" formControlName="time">
+            <div *ngIf="registrationForm.get('time')?.invalid && registrationForm.get('time')?.touched">
+              <small *ngIf="registrationForm.get('time')?.errors?.['required']" class="text-danger">Time is Required</small>
+              <small *ngIf="registrationForm.get('time')?.errors?.['L']" class="text-danger">Enter future time</small>
+            </div>
+            <label>Email:</label>
+            <input [class.is-invalid]="registrationForm.get('Email')?.invalid && registrationForm.get('Email')?.touched" type="email" formControlName="Email" >
+            <div *ngIf="registrationForm.get('Email')?.invalid && registrationForm.get('Email')?.touched">
+              <small *ngIf="registrationForm.get('Email')?.errors?.['required']" class="text-danger">Email is Required</small>
+              <small *ngIf="registrationForm.get('Email')?.errors?.['pattern']" class="text-danger">Enter correct mail!</small>
+            </div>
+          </div>
+          <div *ngIf="isOffline">
+            <label>Date:</label>
+            <input [class.is-invalid]="registrationForm.get('date')?.invalid && registrationForm.get('date')?.touched" type="date" formControlName="date">
+            <div *ngIf="registrationForm.get('date')?.invalid && registrationForm.get('date')?.touched">
+              <small *ngIf="registrationForm.get('date')?.errors?.['required']" class="text-danger">Date is Required</small>
+              <small *ngIf="registrationForm.get('date')?.errors?.['Less']" class="text-danger">Date should be future one</small>
+            </div>
+          </div>  
+        </div>
+      <div class="b">
+      <button [class.disabled]="registrationForm.invalid" class="btn" type="submit">Register</button>
+    </div>
+      </form>
+  </div>
+  <div *ngIf="istate"><h2>Thank you for Registering</h2></div>

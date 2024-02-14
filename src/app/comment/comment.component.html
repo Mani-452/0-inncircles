@@ -1,0 +1,28 @@
+<div class="container1">
+    <h2>Comment Here</h2>
+    <form [formGroup]="commentForm" (ngSubmit)="onComment()">
+        <div class="form-group">
+            <label>Username</label>
+            <input [class.is-invalid]="commentForm.get('userName')?.invalid && commentForm.get('userName')?.touched" formControlName="userName" type="text" class="form-control">
+            <div *ngIf="commentForm.get('userName')?.invalid && commentForm.get('userName')?.touched">
+                <small *ngIf="commentForm.get('userName')?.errors?.['required']" class="text-danger">userName is Required</small>
+                <small *ngIf="commentForm.get('userName')?.errors?.['minlength']" class="text-danger">userName must be atleast 4 characters</small>
+            </div>
+        </div>
+        <div class="from-group">
+        <button type="button" (click)="checkUser()" class="btn">Enter</button>
+        <small *ngIf="!exist && b" class="text-danger">user not found</small>
+        </div>
+        <div class="from-group" *ngIf="exist">
+            <div class="g1">
+            <label>Comment</label>
+            <input [class.is-invalid]="commentForm.get('comment')?.invalid && commentForm.get('comment')?.touched" formControlName="comment" type="text" class="form-control">
+            <small *ngIf="commentForm.get('comment')?.errors?.['required'] && commentForm.get('comment')?.touched" class="text-danger">comment is Required</small>
+            </div>
+        </div>
+        <div class="b">
+            <button [class.disabled]="commentForm.invalid" class="btn" type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+

@@ -1,0 +1,59 @@
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+
+}
+.card {
+    border: 3px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
+    padding: 10px;
+  }
+  .card-header {
+    background-color: #f0f0f0;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .card-body {
+    text-align: center;
+  }
+  
+  .card-text {
+    color: #333;
+  }
+  a{
+    text-decoration: none;
+    color: #333;
+    padding: 5px;
+    border-radius: 5px; 
+    background-color: #6c6868;
+  }
+  .user-time{
+    display:flex;
+    flex-direction: row;
+    gap:10px
+  }
+
+ .delete-icon{
+  cursor: pointer;
+  color: red;
+ }
+ .delete-icon:hover{
+  color: darkred;
+ }
+  
+ .DialogComponent {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 300px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,30 @@
+<div class="card-container">
+<div *ngFor="let post of posts" class="card" >
+      <div class="card-header">
+        {{ post.title }}
+        <mat-icon  class="delete-icon" (click)="handleButtonClick(post.userid,false,post._id)">delete</mat-icon>
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{ post.desc }}</p>
+      </div>
+      <div>
+        <a routerLink="/seeposts/comments/{{post._id}}">Comment</a>
+      </div>
+      <h4>COMMENTS:</h4>
+      <div *ngIf="post?.comments?.length">
+        <div *ngFor="let comment of post.comments">
+          <h2>-------------------------------------</h2>
+          <div class="user-time">
+            <p><i>Commented By: </i>{{ comment.userid.userName }}</p>
+            <p><i>On Date&Time: </i>{{ comment.updatedAt | date:'medium' }}</p>
+          </div>
+          <div></div>
+          <p><i>Comment: </i>{{ comment.comment }}</p>
+          <mat-icon  class="delete-icon" (click)="handleButtonClick(comment.userid, true, post._id)">delete</mat-icon>
+        </div>
+      </div>
+      <div *ngIf="!post?.comments?.length">
+        <p>No comments yet.</p>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+
+   .my {
+    background-color: rgb(95, 92, 92);
+    padding: 20px; 
+     
+  }
+  
+  .my nav {
+    display: flex; 
+    justify-content: center;
+  }
+  
+  .my nav a {
+    text-decoration: none;
+    color: #333; 
+    padding: 12px 25px; 
+    margin-right: 20px; 
+    border-radius: 5px; 
+    background-color: #fcfbfb; 
+  }
+  
+  .my nav a:hover {
+    background-color: #ccc; 
+  }
+  
+ 
+
+
+  
+  

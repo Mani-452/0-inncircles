@@ -1,0 +1,23 @@
+<h2>------------------Verify and Delete----------------------</h2>
+<div class="container1">
+    <form [formGroup]="delForm" (ngSubmit)="ondel()">
+        <div class="form-group">
+            <label>Username</label>
+            <input [class.is-invalid]="delForm.get('userName')?.invalid && delForm.get('userName')?.touched"
+                formControlName="userName" type="text" class="form-control">
+            <div *ngIf="delForm.get('userName')?.invalid && delForm.get('userName')?.touched">
+                <small *ngIf="delForm.get('userName')?.errors?.['required']" class="text-danger">userName is
+                    Required</small>
+                <small *ngIf="delForm.get('userName')?.errors?.['minlength']" class="text-danger">userName must be
+                    atleast 4 characters</small>
+            </div>
+        </div>
+        <div class="from-group">
+            <button type="button" (click)="checkUser()" class="btn">Enter</button>
+            <small *ngIf="!exist && b" class="text-danger">you cannot delete</small>
+        </div>
+        <div class="b" *ngIf="exist && b">
+            <button class="btn1" type="submit">Delete</button>
+        </div>
+    </form>
+</div>
